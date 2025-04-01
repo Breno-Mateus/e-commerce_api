@@ -6,7 +6,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-bg-black: #181313;
   --color-text-footer: #CFCFCF;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
