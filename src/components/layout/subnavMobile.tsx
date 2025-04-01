@@ -1,4 +1,4 @@
-import CardSubnav from "../cardSubnav";
+import CardSubnav from "../cards/cardSubnav";
 import { IoMdMan, IoMdWoman } from "react-icons/io";
 import { GiRing } from "react-icons/gi";
 import { IoPhonePortraitOutline } from "react-icons/io5";
