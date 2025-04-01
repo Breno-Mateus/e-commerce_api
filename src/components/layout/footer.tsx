@@ -1,4 +1,4 @@
-import Logo from "../logo";
+import Logo from "./logo";
 import { FaTwitter, FaFacebookF, FaTiktok, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
