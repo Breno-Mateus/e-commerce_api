@@ -7,7 +7,7 @@ import { GrCart } from "react-icons/gr";
 
 export default function Navbar() {
   return (
-    <header className="flex items-center justify-between px-4 py-6 border-b-[1px] border-text-input lg:px-40 lg:py-7 lg:border-none">
+    <header className="flex items-center justify-between px-4 py-6 border-b-[1px] border-text-input lg:px-40 lg:py-7">
       <Logo />
 
       <div className="hidden lg:flex items-center gap-2 bg-input rounded-md p-4 text-text-input w-md">

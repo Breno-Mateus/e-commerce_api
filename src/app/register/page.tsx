@@ -52,8 +52,8 @@ export default function Register() {
   }
 
   return (
-    <main className="px-4 py-8 flex justify-center">
-      <Card className="w-155 py-8">
+    <main className="px-4 py-8 flex justify-center bg-main">
+      <Card className="w-155 py-8 bg-white">
         <CardHeader>
           <CardTitle className="font-bold text-2xl">Registre-se</CardTitle>
           <CardDescription>
@@ -79,7 +79,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="text"
-                          className="bg-white"
                           placeholder="Digite seu primeiro nome"
                           autoComplete="given-name"
                           aria-label="Primeiro nome"
@@ -101,7 +100,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="text"
-                          className="bg-white"
                           placeholder="Digite seu sobrenome"
                           autoComplete="family-name"
                           aria-label="Sobrenome"
@@ -126,7 +124,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="text"
-                          className="bg-white"
                           placeholder="Ex: joaosilva123"
                           autoComplete="username"
                           aria-label="Nome de usuário"
@@ -148,7 +145,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="tel"
-                          className="bg-white"
                           placeholder="Ex: 84-99999-1234"
                           autoComplete="tel"
                           aria-label="Telefone"
@@ -172,7 +168,6 @@ export default function Register() {
                       <Input
                         {...field}
                         type="email"
-                        className="bg-white"
                         placeholder="exemplo@email.com"
                         autoComplete="email"
                         aria-label="E-mail"
@@ -196,7 +191,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="text"
-                          className="bg-white"
                           placeholder="Digite sua cidade"
                           autoComplete="address-level2"
                           aria-label="Cidade"
@@ -218,7 +212,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="text"
-                          className="bg-white"
                           placeholder="Ex: 59000-000"
                           autoComplete="postal-code"
                           aria-label="CEP"
@@ -245,7 +238,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="text"
-                          className="bg-white"
                           placeholder="Digite o nome da rua"
                           autoComplete="address-line1"
                           aria-label="Rua"
@@ -267,9 +259,10 @@ export default function Register() {
                         <Input
                           {...field}
                           type="number"
-                          onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                          onChange={(e) =>
+                            field.onChange(e.target.valueAsNumber)
+                          }
                           value={field.value}
-                          className="bg-white"
                           placeholder="Ex: 123"
                           aria-label="Número"
                           aria-required="true"
@@ -293,7 +286,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="password"
-                          className="bg-white"
                           placeholder="Digite uma senha segura"
                           autoComplete="new-password"
                           aria-label="Senha"
@@ -315,7 +307,6 @@ export default function Register() {
                         <Input
                           {...field}
                           type="password"
-                          className="bg-white"
                           placeholder="Repita a senha digitada"
                           autoComplete="new-password"
                           aria-label="Confirmar senha"
