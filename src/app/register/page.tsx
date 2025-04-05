@@ -28,12 +28,21 @@ export default function Register() {
   const form = useForm<UserRegisterData>({
     resolver: zodResolver(useRegisterSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
-      username: "",
+      name: {
+        firstname: "",
+        lastname: "",
+      },
       email: "",
+      username: "",
       password: "",
+      confirmPassword: "",
       phone: "",
+      address: {
+        number: 0,
+        city: "",
+        street: "",
+        zipcode: "",
+      },
     },
   });
 
@@ -44,7 +53,7 @@ export default function Register() {
 
   return (
     <main className="px-4 py-8 flex justify-center">
-      <Card className="lg:w-155">
+      <Card className="w-155 py-8">
         <CardHeader>
           <CardTitle className="font-bold text-2xl">Registre-se</CardTitle>
           <CardDescription>
@@ -55,48 +64,103 @@ export default function Register() {
 
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
-              <FormField
-                control={form.control}
-                name="firstname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Primeiro Nome</FormLabel>
-                    <FormControl>
-                      <Input className="bg-white" type="text" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-4"
+            >
+              <div className="flex flex-col lg:flex-row justify-between gap-4">
+                <FormField
+                  control={form.control}
+                  name="name.firstname"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Nome</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          className="bg-white"
+                          placeholder="Digite seu primeiro nome"
+                          autoComplete="given-name"
+                          aria-label="Primeiro nome"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.name?.firstname}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="name.lastname"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Sobrenome</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          className="bg-white"
+                          placeholder="Digite seu sobrenome"
+                          autoComplete="family-name"
+                          aria-label="Sobrenome"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.name?.lastname}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-              <FormField
-                control={form.control}
-                name="lastname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Sobrenome</FormLabel>
-                    <FormControl>
-                      <Input className="bg-white" type="text" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input className="bg-white" type="text" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="flex flex-col lg:flex-row justify-between gap-4">
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          className="bg-white"
+                          placeholder="Ex: joaosilva123"
+                          autoComplete="username"
+                          aria-label="Nome de usuário"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.username}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Telefone</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="tel"
+                          className="bg-white"
+                          placeholder="Ex: 84-99999-1234"
+                          autoComplete="tel"
+                          aria-label="Telefone"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.phone}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
               <FormField
                 control={form.control}
@@ -105,40 +169,165 @@ export default function Register() {
                   <FormItem>
                     <FormLabel>E-mail</FormLabel>
                     <FormControl>
-                      <Input className="bg-white" type="email" {...field} />
+                      <Input
+                        {...field}
+                        type="email"
+                        className="bg-white"
+                        placeholder="exemplo@email.com"
+                        autoComplete="email"
+                        aria-label="E-mail"
+                        aria-required="true"
+                        aria-invalid={!!form.formState.errors.email}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Telefone</FormLabel>
-                    <FormControl>
-                      <Input className="bg-white" type="tel" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="flex flex-col lg:flex-row justify-between gap-4">
+                <FormField
+                  control={form.control}
+                  name="address.city"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Cidade</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          className="bg-white"
+                          placeholder="Digite sua cidade"
+                          autoComplete="address-level2"
+                          aria-label="Cidade"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.address?.city}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.zipcode"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>CEP</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          className="bg-white"
+                          placeholder="Ex: 59000-000"
+                          autoComplete="postal-code"
+                          aria-label="CEP"
+                          aria-required="true"
+                          aria-invalid={
+                            !!form.formState.errors.address?.zipcode
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Senha</FormLabel>
-                    <FormControl>
-                      <Input className="bg-white" type="password" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="flex flex-col lg:flex-row justify-between gap-4">
+                <FormField
+                  control={form.control}
+                  name="address.street"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Rua</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="text"
+                          className="bg-white"
+                          placeholder="Digite o nome da rua"
+                          autoComplete="address-line1"
+                          aria-label="Rua"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.address?.street}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address.number"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Número</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="number"
+                          onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                          value={field.value}
+                          className="bg-white"
+                          placeholder="Ex: 123"
+                          aria-label="Número"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.address?.number}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="flex flex-col lg:flex-row justify-between gap-4">
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Senha</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="password"
+                          className="bg-white"
+                          placeholder="Digite uma senha segura"
+                          autoComplete="new-password"
+                          aria-label="Senha"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.password}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem className="lg:w-1/2 flex flex-col">
+                      <FormLabel>Confirmar senha</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="password"
+                          className="bg-white"
+                          placeholder="Repita a senha digitada"
+                          autoComplete="new-password"
+                          aria-label="Confirmar senha"
+                          aria-required="true"
+                          aria-invalid={!!form.formState.errors.confirmPassword}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
               <Button type="submit">Cadastrar</Button>
             </form>
