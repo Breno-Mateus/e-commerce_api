@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRegister } from "@/hooks/useRegister";
 import {
   useRegisterSchema,
   UserRegisterData,
@@ -46,9 +47,15 @@ export default function Register() {
       },
     },
   });
+  
+  const registerMutation = useRegister();
 
   function onSubmit(values: UserRegisterData) {
     console.log("Valores recebidos:", values);
+    // Remove confirmPassword com destruturação, mas ignora o aviso do ESLint
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { confirmPassword, ...userData } = values;
+    registerMutation.mutate(userData);
     form.reset();
   }
 
