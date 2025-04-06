@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Input } from "../ui/input";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -18,7 +19,7 @@ export default function Navbar() {
       <div className="hidden lg:flex items-center gap-4 text-2xl">
         <FaRegHeart />
         <GrCart />
-        <FaRegUser />
+        <Link href="/login"><FaRegUser /></Link>
       </div>
 
       <Sheet>

@@ -22,6 +22,7 @@ import {
   UserRegisterData,
 } from "@/schema/useRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 export default function Register() {
@@ -52,13 +53,13 @@ export default function Register() {
   }
 
   return (
-    <main className="px-4 py-8 flex justify-center bg-main">
-      <Card className="w-155 py-8 bg-white">
+    <main className="px-4 py-24 flex justify-center">
+      <Card className="w-155 py-8 bg-main">
         <CardHeader>
           <CardTitle className="font-bold text-2xl">Registre-se</CardTitle>
           <CardDescription>
             Já tem uma conta, faça{" "}
-            <span className="underline text-black font-medium"> Login</span>.
+            <Link href="/login" className="underline text-black font-medium"> Login</Link>.
           </CardDescription>
         </CardHeader>
 
@@ -80,6 +81,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite seu primeiro nome"
+                          className="bg-white"
                           autoComplete="given-name"
                           aria-label="Primeiro nome"
                           aria-required="true"
@@ -101,6 +103,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite seu sobrenome"
+                          className="bg-white"
                           autoComplete="family-name"
                           aria-label="Sobrenome"
                           aria-required="true"
@@ -125,6 +128,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Ex: joaosilva123"
+                          className="bg-white"
                           autoComplete="username"
                           aria-label="Nome de usuário"
                           aria-required="true"
@@ -146,6 +150,7 @@ export default function Register() {
                           {...field}
                           type="tel"
                           placeholder="Ex: 84-99999-1234"
+                          className="bg-white"
                           autoComplete="tel"
                           aria-label="Telefone"
                           aria-required="true"
@@ -169,6 +174,7 @@ export default function Register() {
                         {...field}
                         type="email"
                         placeholder="exemplo@email.com"
+                        className="bg-white"
                         autoComplete="email"
                         aria-label="E-mail"
                         aria-required="true"
@@ -192,6 +198,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite sua cidade"
+                          className="bg-white"
                           autoComplete="address-level2"
                           aria-label="Cidade"
                           aria-required="true"
@@ -213,6 +220,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Ex: 59000-000"
+                          className="bg-white"
                           autoComplete="postal-code"
                           aria-label="CEP"
                           aria-required="true"
@@ -239,6 +247,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite o nome da rua"
+                          className="bg-white"
                           autoComplete="address-line1"
                           aria-label="Rua"
                           aria-required="true"
@@ -264,6 +273,7 @@ export default function Register() {
                           }
                           value={field.value}
                           placeholder="Ex: 123"
+                          className="bg-white"
                           aria-label="Número"
                           aria-required="true"
                           aria-invalid={!!form.formState.errors.address?.number}
@@ -287,6 +297,7 @@ export default function Register() {
                           {...field}
                           type="password"
                           placeholder="Digite uma senha segura"
+                          className="bg-white"
                           autoComplete="new-password"
                           aria-label="Senha"
                           aria-required="true"
@@ -308,6 +319,7 @@ export default function Register() {
                           {...field}
                           type="password"
                           placeholder="Repita a senha digitada"
+                          className="bg-white"
                           autoComplete="new-password"
                           aria-label="Confirmar senha"
                           aria-required="true"
