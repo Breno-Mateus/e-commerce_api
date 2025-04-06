@@ -22,6 +22,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { useLogin } from "@/hooks/useLogin";
 
 export default function Login() {
   const form = useForm<UserLoginData>({
@@ -31,9 +32,11 @@ export default function Login() {
       password: "",
     },
   });
+  const loginMutation = useLogin();
 
   function onSubmit(values: UserLoginData) {
     console.log("Login data:", values);
+    loginMutation.mutate(values);
     form.reset();
   }
 
