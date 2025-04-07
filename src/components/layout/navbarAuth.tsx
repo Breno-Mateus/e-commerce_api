@@ -1,0 +1,38 @@
+import { Menu, Search } from "lucide-react";
+import Logo from "./logo";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Input } from "../ui/input";
+import { FaRegHeart, FaRegUser } from "react-icons/fa";
+import { GrCart } from "react-icons/gr";
+import Link from "next/link";
+
+export default function NavbarAuth() {
+  return (
+    <header className="bg-black flex items-center justify-between px-4 py-6 border-b-[1px] border-text-input lg:px-40 lg:py-7">
+      <Logo bg="white" />
+
+      <div className="hidden lg:flex items-center gap-2 bg-white rounded-md p-4 text-text-input w-md">
+        <Search />
+        <Input className="border-none shadow-none" placeholder="Procurar" />
+      </div>
+
+      <div className="hidden lg:flex items-center gap-4 text-2xl text-white">
+        <FaRegHeart />
+        <GrCart />
+        <Link href="/login">
+          <FaRegUser />
+        </Link>
+      </div>
+
+      <Sheet>
+        <SheetTrigger className="lg:hidden">
+          <Menu size={30} />
+        </SheetTrigger>
+
+        <SheetContent>
+          <SheetTitle>Menu</SheetTitle>
+        </SheetContent>
+      </Sheet>
+    </header>
+  );
+}

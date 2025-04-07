@@ -18,11 +18,14 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
 import { useLogin } from "@/hooks/useLogin";
+import Logo from "@/components/layout/logo";
+import { ArrowLeft } from "lucide-react";
 
 export default function Login() {
   const form = useForm<UserLoginData>({
@@ -32,7 +35,7 @@ export default function Login() {
       password: "",
     },
   });
-  
+
   const { mutate } = useLogin();
 
   function onSubmit(values: UserLoginData) {
@@ -42,17 +45,19 @@ export default function Login() {
   }
 
   return (
-    <main className="px-4 py-24 flex justify-center">
-      <Card className="w-full max-w-md py-8 bg-main">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">Login</CardTitle>
-          <CardDescription>
-            Não tem uma conta,{" "}
-            <Link href="/register" className="underline text-black font-medium">
-              crie uma nova
-            </Link>
-            .
-          </CardDescription>
+    <main className="md:px-4 md:py-24 flex justify-center items-center min-h-screen">
+      <Card className="w-full h-auto max-w-md py-8 bg-white shadow-none border-white md:shadow-sm md:border-black">
+        <div className="w-8 mx-6 py-1 px-1 border border-black">
+          <Link href="/">
+            <ArrowLeft />
+          </Link>
+        </div>
+        <div className="flex justify-center">
+          <Logo />
+        </div>
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold">Identifique-se</CardTitle>
+          <CardDescription>Digite seu e-mail e senha</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -71,7 +76,7 @@ export default function Login() {
                       <Input
                         type="text"
                         placeholder="Digite seu username"
-                        className="bg-white"
+                        className="bg-white border-black rounded-xs"
                         {...field}
                         autoComplete="username"
                         aria-describedby="username-help"
@@ -92,7 +97,7 @@ export default function Login() {
                       <Input
                         type="password"
                         placeholder="Digite sua senha"
-                        className="bg-white"
+                        className="bg-white border-black rounded-xs"
                         {...field}
                         autoComplete="current-password"
                         aria-describedby="password-help"
@@ -103,10 +108,21 @@ export default function Login() {
                 )}
               />
 
-              <Button type="submit">Entrar</Button>
+              <Button type="submit" className="rounded-xs my-8">
+                Entrar
+              </Button>
             </form>
           </Form>
         </CardContent>
+
+        <CardFooter className="justify-center">
+          <CardDescription className="text-black">
+            Primeira vez na Cyber?{" "}
+            <Link href="/register" className="font-bold">
+              Criar conta
+            </Link>
+          </CardDescription>
+        </CardFooter>
       </Card>
     </main>
   );
