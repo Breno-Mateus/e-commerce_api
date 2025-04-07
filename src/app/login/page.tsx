@@ -32,11 +32,12 @@ export default function Login() {
       password: "",
     },
   });
-  const loginMutation = useLogin();
+  
+  const { mutate } = useLogin();
 
   function onSubmit(values: UserLoginData) {
     console.log("Login data:", values);
-    loginMutation.mutate(values);
+    mutate(values);
     form.reset();
   }
 
