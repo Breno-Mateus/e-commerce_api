@@ -118,7 +118,7 @@ export default function Login() {
         <CardFooter className="justify-center">
           <CardDescription className="text-black">
             Primeira vez na Cyber?{" "}
-            <Link href="/register" className="font-bold">
+            <Link href="/register" className="font-bold hover:underline">
               Criar conta
             </Link>
           </CardDescription>

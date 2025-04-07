@@ -1,10 +1,12 @@
 "use client";
 
+import Logo from "@/components/layout/logo";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -23,6 +25,7 @@ import {
   UserRegisterData,
 } from "@/schema/useRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
@@ -60,14 +63,19 @@ export default function Register() {
   }
 
   return (
-    <main className="px-4 py-24 flex justify-center">
-      <Card className="w-155 py-8 bg-main">
-        <CardHeader>
-          <CardTitle className="font-bold text-2xl">Registre-se</CardTitle>
-          <CardDescription>
-            Já tem uma conta, faça{" "}
-            <Link href="/login" className="underline text-black font-medium"> Login</Link>.
-          </CardDescription>
+    <main className="md:px-4 md:py-24 flex justify-center items-center min-h-screen">
+      <Card className="w-full h-auto max-w-xl py-8 bg-white shadow-none border-white md:shadow-sm md:border-black">
+        <div className="w-8 mx-6 py-1 px-1 border border-black">
+          <Link href="/">
+            <ArrowLeft />
+          </Link>
+        </div>
+        <div className="flex justify-center">
+          <Logo />
+        </div>
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold">Criação de conta</CardTitle>
+          <CardDescription className="px-12">Cadastre-se rapidamente e acesse a plataforma ideal para suas compras.</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -88,7 +96,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite seu primeiro nome"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="given-name"
                           aria-label="Primeiro nome"
                           aria-required="true"
@@ -110,7 +118,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite seu sobrenome"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="family-name"
                           aria-label="Sobrenome"
                           aria-required="true"
@@ -135,7 +143,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Ex: joaosilva123"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="username"
                           aria-label="Nome de usuário"
                           aria-required="true"
@@ -157,7 +165,7 @@ export default function Register() {
                           {...field}
                           type="tel"
                           placeholder="Ex: 84-99999-1234"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="tel"
                           aria-label="Telefone"
                           aria-required="true"
@@ -181,7 +189,7 @@ export default function Register() {
                         {...field}
                         type="email"
                         placeholder="exemplo@email.com"
-                        className="bg-white"
+                        className="bg-white border-black rounded-xs"
                         autoComplete="email"
                         aria-label="E-mail"
                         aria-required="true"
@@ -205,7 +213,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite sua cidade"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="address-level2"
                           aria-label="Cidade"
                           aria-required="true"
@@ -227,7 +235,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Ex: 59000-000"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="postal-code"
                           aria-label="CEP"
                           aria-required="true"
@@ -254,7 +262,7 @@ export default function Register() {
                           {...field}
                           type="text"
                           placeholder="Digite o nome da rua"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           autoComplete="address-line1"
                           aria-label="Rua"
                           aria-required="true"
@@ -280,7 +288,7 @@ export default function Register() {
                           }
                           value={field.value}
                           placeholder="Ex: 123"
-                          className="bg-white"
+                          className="bg-white border-black rounded-xs"
                           aria-label="Número"
                           aria-required="true"
                           aria-invalid={!!form.formState.errors.address?.number}
@@ -292,57 +300,74 @@ export default function Register() {
                 />
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-between gap-4">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem className="lg:w-1/2 flex flex-col">
-                      <FormLabel>Senha</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="password"
-                          placeholder="Digite uma senha segura"
-                          className="bg-white"
-                          autoComplete="new-password"
-                          aria-label="Senha"
-                          aria-required="true"
-                          aria-invalid={!!form.formState.errors.password}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem className="lg:w-1/2 flex flex-col">
-                      <FormLabel>Confirmar senha</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="password"
-                          placeholder="Repita a senha digitada"
-                          className="bg-white"
-                          autoComplete="new-password"
-                          aria-label="Confirmar senha"
-                          aria-required="true"
-                          aria-invalid={!!form.formState.errors.confirmPassword}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="Digite uma senha segura"
+                        className="bg-white border-black rounded-xs"
+                        autoComplete="new-password"
+                        aria-label="Senha"
+                        aria-required="true"
+                        aria-invalid={!!form.formState.errors.password}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                    <small>A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, um número e um caractere especial entre: !@#$%^*()_+?{}[].</small>
+                  </FormItem>
+                )}
+              />
 
-              <Button type="submit">Cadastrar</Button>
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirmar senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="Repita a senha digitada"
+                        className="bg-white border-black rounded-xs"
+                        autoComplete="new-password"
+                        aria-label="Confirmar senha"
+                        aria-required="true"
+                        aria-invalid={!!form.formState.errors.confirmPassword}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button type="submit" className="rounded-xs mt-8">Cadastrar</Button>
             </form>
           </Form>
         </CardContent>
+
+        <CardFooter className="flex flex-col justify-center text-center gap-6">
+          <CardDescription className="text-black text-xs">
+            Ao criar uma conta, você concorda com os{" "} 
+            <Link href="" className="font-bold hover:underline">Termos de Uso </Link> 
+            e{" "} 
+            <Link href="" className="font-bold hover:underline">Política de Privacidade </Link> 
+            da Cyber.
+          </CardDescription>
+
+          <CardDescription className="text-black">
+            Já tem uma conta?{" "}
+            <Link href="/login" className="font-bold hover:underline">
+              Entrar
+            </Link>
+          </CardDescription>
+        </CardFooter>
       </Card>
     </main>
   );
