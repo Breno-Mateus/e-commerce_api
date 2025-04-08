@@ -16,7 +16,10 @@ export const useRegisterSchema = z
         number: z.number().min(1, "O número deve ser maior que 0"),
         zipcode: z.string().regex(/^\d{5}-\d{3}$/, "CEP inválido (formato esperado: 00000-000)"),
     }),
-    phone: z.string().regex(/^\d{2,3}-\d{4,5}-\d{4}$/, "Telefone inválido"),
+    phone: z
+      .string()
+      .min(15, "Número inválido")
+      .regex(/^\(\d{2}\)\s9\d{4}-\d{4}$/, "Formato inválido. Use (84) 90000-0000"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],

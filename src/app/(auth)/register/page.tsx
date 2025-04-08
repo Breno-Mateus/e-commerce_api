@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import MaskedInput from "@/components/ui/maskedInput";
 import { useRegister } from "@/hooks/useRegister";
 import {
   useRegisterSchema,
@@ -50,7 +51,7 @@ export default function Register() {
       },
     },
   });
-  
+
   const registerMutation = useRegister();
 
   function onSubmit(values: UserRegisterData) {
@@ -75,7 +76,10 @@ export default function Register() {
         </div>
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Criação de conta</CardTitle>
-          <CardDescription className="px-12">Cadastre-se rapidamente e acesse a plataforma ideal para suas compras.</CardDescription>
+          <CardDescription className="px-12">
+            Cadastre-se rapidamente e acesse a plataforma ideal para suas
+            compras.
+          </CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -161,15 +165,11 @@ export default function Register() {
                     <FormItem className="lg:w-1/2 flex flex-col">
                       <FormLabel>Telefone</FormLabel>
                       <FormControl>
-                        <Input
+                        <MaskedInput
                           {...field}
-                          type="tel"
-                          placeholder="Ex: 84-99999-1234"
+                          placeholder="(99) 99999-9999"
+                          format="(##) #####-####"
                           className="bg-white border-black rounded-xs"
-                          autoComplete="tel"
-                          aria-label="Telefone"
-                          aria-required="true"
-                          aria-invalid={!!form.formState.errors.phone}
                         />
                       </FormControl>
                       <FormMessage />
@@ -231,7 +231,8 @@ export default function Register() {
                     <FormItem className="lg:w-1/2 flex flex-col">
                       <FormLabel>CEP</FormLabel>
                       <FormControl>
-                        <Input
+                        <MaskedInput 
+                          format="#####-###"
                           {...field}
                           type="text"
                           placeholder="Ex: 59000-000"
@@ -319,7 +320,11 @@ export default function Register() {
                       />
                     </FormControl>
                     <FormMessage />
-                    <small>A senha deve conter no mínimo 8 caracteres, uma letra maiúscula, um número e um caractere especial entre: !@#$%^*()_+?{}[].</small>
+                    <small>
+                      A senha deve conter no mínimo 8 caracteres, uma letra
+                      maiúscula, um número e um caractere especial entre:
+                      !@#$%^*()_+?{}[].
+                    </small>
                   </FormItem>
                 )}
               />
@@ -347,17 +352,23 @@ export default function Register() {
                 )}
               />
 
-              <Button type="submit" className="rounded-xs mt-8">Cadastrar</Button>
+              <Button type="submit" className="rounded-xs mt-8">
+                Cadastrar
+              </Button>
             </form>
           </Form>
         </CardContent>
 
         <CardFooter className="flex flex-col justify-center text-center gap-6">
           <CardDescription className="text-black text-xs">
-            Ao criar uma conta, você concorda com os{" "} 
-            <Link href="" className="font-bold hover:underline">Termos de Uso </Link> 
-            e{" "} 
-            <Link href="" className="font-bold hover:underline">Política de Privacidade </Link> 
+            Ao criar uma conta, você concorda com os{" "}
+            <Link href="" className="font-bold hover:underline">
+              Termos de Uso{" "}
+            </Link>
+            e{" "}
+            <Link href="" className="font-bold hover:underline">
+              Política de Privacidade{" "}
+            </Link>
             da Cyber.
           </CardDescription>
 
